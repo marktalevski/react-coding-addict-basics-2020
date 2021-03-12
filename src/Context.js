@@ -4,10 +4,10 @@ const Context = React.createContext()
 
 function ContextProvider({children}) {
     const [allPhotos, setAllPhotos] = useState([])
+    const url = "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json"
     
-
     useEffect(() => {
-        fetch("https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json")
+        fetch(url)
           .then(res => res.json())
           .then(data => setAllPhotos(data))
       }, [])
