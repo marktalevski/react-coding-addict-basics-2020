@@ -1,11 +1,11 @@
-import React, { useState, useRef, forwardRef, useEffect, createElement } from 'react'
+import React, { useState, useRef, createElement } from 'react'
 
 import ButtonToggle from './ButtonToggle'
 import FormToggle from './FormToggle'
 
 const ToggleableForm = ({ options }) => {
-   const currentForm = 0 // Change this to 1 to get the Signup form to show up
-   let focusRef = 0
+   const [currentForm, setCurrentForm] = useState(0)
+   let focusRef = useRef(null)
    
    return(   
     <>
@@ -13,6 +13,9 @@ const ToggleableForm = ({ options }) => {
        return( 
         <ButtonToggle 
           key={`button${index}`}
+          toggleForm={() => {
+            setCurrentForm(index)
+          }}
         >
           {el.name}
         </ButtonToggle>
@@ -27,7 +30,7 @@ const ToggleableForm = ({ options }) => {
           <div 
             key={`form${index}`}
           >
-           {createElement(el.component, { /* Hmm, what should go here?*/ })}
+           {createElement(el.component, { ref: focusRef })}
          </div>
         )
       })}

@@ -1,10 +1,10 @@
-import React, { useState, useRef, forwardRef, useEffect, createElement } from 'react'
+import React from 'react'
 
 const ButtonToggle = ({ children, toggleRef, toggleForm }) => {
    return(
       <button 
          onClick={() => {
-         // Hmm, things should happen here
+            toggleForm()
          }}
       >
          {children}

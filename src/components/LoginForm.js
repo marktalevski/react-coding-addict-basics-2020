@@ -1,20 +1,31 @@
-import React, { useState, useRef, forwardRef, useEffect, createElement } from 'react'
+import React, { useState, forwardRef, useEffect } from 'react'
 
-const LoginForm = (props) => {
+const LoginForm = forwardRef((props, ref) => {
    const [username, setUsername] = useState('')
    const [password, setPassword] = useState('')
+
+   useEffect(() => {
+      ref.current.focus()
+   }, [])
    
    return(
    <>
      <input 
-         type="text" 
-         defaultValue={username} 
+         type="text"
+         ref={ref} 
+         value={username}
+         onChange={(e) => {
+            setUsername(e.target.value)
+         }} 
          placeholder="Username" 
       />
      
      <input 
          type="password" 
-         defaultValue={password} 
+         value={password} 
+         onChange={(e) => {
+            setPassword(e.target.value)
+         }}
          placeholder="Password" 
       />
      
@@ -24,5 +35,6 @@ const LoginForm = (props) => {
    </>
    )
  }
+)
 
  export default LoginForm
