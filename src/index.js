@@ -14,7 +14,7 @@ const secondBook = {
   author:'Jordan Peterson'
 }
 
-const App = (props) => {
+const App = () => {
   return (
     <section 
       className='booklist'>
@@ -30,48 +30,44 @@ const App = (props) => {
   );
 };
 
-const Book = (props) => {
+const Book = ({ image, title, author }) => {
   return (
     <article 
       className='book'>
       <Image
-        image={props.image} />
+        image={image} />
       <Title 
-        title={props.title} />
+        title={title} />
       <Author 
-        author={props.author} />
+        author={author} />
     </article>
   );
 }
 
-export const Image = (props) => {
+export const Image = ({ image }) => {
   return (
     <article>
-        <img 
-          src={props.image}
-          alt='' />
+      <img src={image} alt='' />
     </article>
   );
-}
+};
 
-const Title = (props) => {
+const Title = ({ title }) => {
+  return <h1>{title}</h1>;
+};
+
+const Author = ({ author }) => {
   return (
-    <h1>
-      {props.title}
-    </h1>
-  )
-}
-
-const Author = (props) => {
-  return(
-    <h4 style={{
-      color: '#617d98', 
-      fontSize: '0.75rem', 
-      marginTop: '.25rem'}}
+    <h4
+      style={{
+        color: '#617d98',
+        fontSize: '0.75rem',
+        marginTop: '.25rem',
+      }}
     >
-      {props.author}
+      {author}
     </h4>
-  )  
+  );
 };
 
 ReactDOM.render(
