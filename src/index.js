@@ -10,27 +10,36 @@ const firstBook = {
 
 const secondBook = {
   image:'https://images-na.ssl-images-amazon.com/images/I/71xLmdLOQ0L._AC_UL200_SR200,200_.jpg',
-  title:'Beyond Chaos',
-  author:'Jordan Peterson'
-}
+  title: 'Beyond Chaos',
+  author: 'Jordan Peterson'
+};
 
-const App = () => {
+const App = ({ children }) => {
   return (
-    <section 
-      className='booklist'>
-      <Book 
-        title={firstBook.title} 
-        author={firstBook.author} 
-        image={firstBook.image} />
-      <Book 
+    <section className='booklist'>
+      <Book
+        title={firstBook.title}
+        author={firstBook.author}
+        image={firstBook.image}
+        description={firstBook.description}
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
+        excepturi nemo quibusdam voluptates repellendus vero?
+      </Book>
+
+      <Book
         title={secondBook.title}
         author={secondBook.author}
-        image={secondBook.image} />
+        image={secondBook.image}
+        description={secondBook.description}
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </Book>
     </section>
   );
 };
 
-const Book = ({ image, title, author }) => {
+const Book = ({ image, title, author, children }) => {
   return (
     <article 
       className='book'>
@@ -39,7 +48,9 @@ const Book = ({ image, title, author }) => {
       <Title 
         title={title} />
       <Author 
-        author={author} />
+        author={author}
+      />
+        {children}
     </article>
   );
 }
