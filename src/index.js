@@ -2,44 +2,40 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import './styles.css'
 
-const firstBook = {
+const books = [
+  {
+  id: '1',
   image:'https://m.media-amazon.com/images/I/91SkYC1TRHL._AC_UY218_.jpg',
   title:'The Way of Kings',
   author:'Brandon Sanderson'
-}
-
-const secondBook = {
+  },
+  {
+  id: '2',
   image:'https://images-na.ssl-images-amazon.com/images/I/71xLmdLOQ0L._AC_UL200_SR200,200_.jpg',
   title: 'Beyond Chaos',
   author: 'Jordan Peterson'
-};
+  },
+]
 
-const App = ({ children }) => {
+
+
+const BookList = () => {
   return (
     <section className='booklist'>
-      <Book
-        title={firstBook.title}
-        author={firstBook.author}
-        image={firstBook.image}
-        description={firstBook.description}
-      >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
-        excepturi nemo quibusdam voluptates repellendus vero?
-      </Book>
-
-      <Book
-        title={secondBook.title}
-        author={secondBook.author}
-        image={secondBook.image}
-        description={secondBook.description}
-      >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </Book>
+      {books.map((book) => {
+        return(
+          <Book
+            key={book.id}
+            {...book}
+          >
+          </Book>
+        )
+      })}
     </section>
   );
 };
 
-const Book = ({ image, title, author, children }) => {
+const Book = ({ image, title, author }) => {
   return (
     <article 
       className='book'>
@@ -50,7 +46,6 @@ const Book = ({ image, title, author, children }) => {
       <Author 
         author={author}
       />
-        {children}
     </article>
   );
 }
@@ -82,6 +77,6 @@ const Author = ({ author }) => {
 };
 
 ReactDOM.render(
-  <App />,
+  <BookList />,
   document.getElementById('root')
 )
